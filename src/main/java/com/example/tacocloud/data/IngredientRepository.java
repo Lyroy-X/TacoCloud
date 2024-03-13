@@ -18,7 +18,7 @@ public class IngredientRepository implements Repository<Ingredient> {
 
     @Override
     public List<Ingredient> findAll() {
-        return null;
+        return jdbcTemplate.query("SELECT * FROM ingredient", this::convert);
     }
 
     @Override
