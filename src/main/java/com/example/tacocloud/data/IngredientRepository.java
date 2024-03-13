@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public class IngredientRepository implements Repository<Ingredient> {
 
-
     @Override
     public List<Ingredient> findAll() {
         return null;
