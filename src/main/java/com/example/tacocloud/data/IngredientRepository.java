@@ -23,7 +23,8 @@ public class IngredientRepository implements Repository<Ingredient> {
 
     @Override
     public Optional<Ingredient> findById(String id) {
-        return Optional.empty();
+        List<Ingredient> ingredients = jdbcTemplate.query("SELECT * FROM ingredient WHERE id = ?", this::convert, id);
+        return ingredients.isEmpty() ? Optional.empty() : Optional.of(ingredients.get(0));
     }
 
     @Override
