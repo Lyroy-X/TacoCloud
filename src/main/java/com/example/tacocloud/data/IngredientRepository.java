@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class IngredientRepository implements Repository<Ingredient> {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public IngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -18,18 +18,22 @@ public class IngredientRepository implements Repository<Ingredient> {
 
     @Override
     public List<Ingredient> findAll() {
-        return jdbcTemplate.query("SELECT * FROM ingredient", this::convertRowToIngredient);
+        return jdbcTemplate.query("SELECT * FROM ingredient;", this::convertRowToIngredient);
     }
 
     @Override
     public Optional<Ingredient> findById(String id) {
-        List<Ingredient> ingredients = jdbcTemplate.query("SELECT * FROM ingredient WHERE id = ?", this::convertRowToIngredient, id);
+        List<Ingredient> ingredients = jdbcTemplate.query("SELECT * FROM ingredient WHERE id = ?;", this::convertRowToIngredient, id);
         return ingredients.isEmpty() ? Optional.empty() : Optional.of(ingredients.get(0));
     }
 
     @Override
     public void save(Ingredient ingredient) {
-
+        jdbcTemplate.update("INSERT INTO ingredient (id, name, type) VALUES (?, ?, ?);",
+                ingredient.getId(),
+                ingredient.getName(),
+                ingredient.getType().toString()
+        );
     }
 
     private Ingredient convertRowToIngredient(ResultSet row, int rowNum) throws SQLException {
