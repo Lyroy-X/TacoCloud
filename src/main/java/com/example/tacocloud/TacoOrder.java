@@ -1,13 +1,21 @@
 package com.example.tacocloud;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class TacoOrder {
+
+    @NotNull
+    private Long id;
+
+    @NotNull
+    private Date placeAt;
 
     @Valid
     private DeliveryAddress deliveryAddress;
