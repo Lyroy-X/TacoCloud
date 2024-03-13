@@ -18,12 +18,12 @@ public class IngredientRepository implements Repository<Ingredient> {
 
     @Override
     public List<Ingredient> findAll() {
-        return jdbcTemplate.query("SELECT * FROM ingredient", this::convert);
+        return jdbcTemplate.query("SELECT * FROM ingredient", this::convertRowToIngredient);
     }
 
     @Override
     public Optional<Ingredient> findById(String id) {
-        List<Ingredient> ingredients = jdbcTemplate.query("SELECT * FROM ingredient WHERE id = ?", this::convert, id);
+        List<Ingredient> ingredients = jdbcTemplate.query("SELECT * FROM ingredient WHERE id = ?", this::convertRowToIngredient, id);
         return ingredients.isEmpty() ? Optional.empty() : Optional.of(ingredients.get(0));
     }
 
@@ -32,7 +32,7 @@ public class IngredientRepository implements Repository<Ingredient> {
 
     }
 
-    private Ingredient convert(ResultSet row, int rowNum) throws SQLException {
+    private Ingredient convertRowToIngredient(ResultSet row, int rowNum) throws SQLException {
         return new Ingredient(
                 row.getInt(1),
                 row.getString(2),
