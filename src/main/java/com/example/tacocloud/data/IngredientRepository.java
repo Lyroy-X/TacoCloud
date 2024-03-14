@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+@org.springframework.stereotype.Repository
 public class IngredientRepository implements Repository<Ingredient> {
 
     private final JdbcTemplate jdbcTemplate;
