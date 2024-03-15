@@ -13,19 +13,19 @@ import java.util.List;
 public class OrderRepository implements RepositoryForSave<TacoOrder> {
 
     private final JdbcOperations jdbcTemplate;
-    private int idOrder;
-    private int idTaco;
+    private int orderId;
+    private int tacoId;
 
     public OrderRepository(JdbcOperations jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        idOrder = idTaco = 1;
+        orderId = tacoId = 1;
     }
 
     @Override
     @Transactional
     public void save(TacoOrder tacoOrder) {
         tacoOrder.setPlaceAt(new Date());
-        tacoOrder.setId(idOrder);
+        tacoOrder.setId(orderId);
 
         CC cc = tacoOrder.getCc();
         saveCC(cc);
@@ -34,7 +34,7 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
         saveAddress(deliveryAddress);
 
         jdbcTemplate.update("INSERT INTO taco_order(id, id_cc, id_address, placeat) VALUES (?, ?, ?, ?)",
-                idOrder,
+                orderId,
                 cc.getId(),
                 deliveryAddress.getId(),
                 tacoOrder.getPlaceAt()
@@ -43,13 +43,13 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
         List<Taco> tacos = tacoOrder.getTacos();
         for (Taco taco : tacos) {
             saveTaco(taco);
-            idTaco++;
+            tacoId++;
         }
-        idOrder++;
+        orderId++;
     }
 
     private void saveAddress(DeliveryAddress deliveryAddress) {
-        deliveryAddress.setId(idOrder);
+        deliveryAddress.setId(orderId);
         jdbcTemplate.update("INSERT INTO address(id, name, street, city, state, zip) VALUES (?, ?, ?, ?, ?, ?)",
                 deliveryAddress.getId(),
                 deliveryAddress.getName(),
@@ -61,7 +61,7 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
     }
 
     private void saveCC(CC cc) {
-        cc.setId(idOrder);
+        cc.setId(orderId);
         jdbcTemplate.update("INSERT INTO cc(id, number, expiration, cvv) VALUES (?, ?, ?, ?)",
                 cc.getId(),
                 cc.getNumber(),
@@ -72,11 +72,11 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
 
     private void saveTaco(Taco taco) {
         taco.setCreatedAt(new Date());
-        taco.setId(idTaco);
+        taco.setId(tacoId);
 
         jdbcTemplate.update("INSERT INTO taco(id, id_taco_order, name, createdat) VALUES (?, ?, ?, ?)",
-                idTaco,
-                idOrder,
+                tacoId,
+                orderId,
                 taco.getName(),
                 taco.getCreatedAt()
         );
