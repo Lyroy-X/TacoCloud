@@ -1,10 +1,13 @@
 package com.example.tacocloud;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class DeliveryAddress {
+
+    private int id;
 
     @NotBlank(message = "*Name обязательное поле")
     private String name;

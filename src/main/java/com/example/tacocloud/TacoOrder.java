@@ -11,10 +11,8 @@ import java.util.List;
 @Data
 public class TacoOrder {
 
-    @NotNull
-    private Long id;
+    private int id;
 
-    @NotNull
     private Date placeAt;
 
     @Valid

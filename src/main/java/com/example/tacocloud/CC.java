@@ -1,12 +1,15 @@
 package com.example.tacocloud;
 
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Data
 public class CC {
+
+    private int id;
 
     @CreditCardNumber(message = "*Не действительный номер карты")
     private String number;
