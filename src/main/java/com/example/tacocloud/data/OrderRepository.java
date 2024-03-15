@@ -14,10 +14,11 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
 
     private final JdbcOperations jdbcTemplate;
     private int idOrder;
+    private int idTaco;
 
     public OrderRepository(JdbcOperations jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        idOrder = 1;
+        idOrder = idTaco = 1;
     }
 
     @Override
@@ -40,11 +41,10 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
         );
 
         List<Taco> tacos = tacoOrder.getTacos();
-        int idTacoTemplate = 1;
-
-        for (Taco taco : tacos)
-            saveTaco(taco, idTacoTemplate++);
-
+        for (Taco taco : tacos) {
+            saveTaco(taco);
+            idTaco++;
+        }
         idOrder++;
     }
 
@@ -70,7 +70,7 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
         );
     }
 
-    private void saveTaco(Taco taco, int idTaco) {
+    private void saveTaco(Taco taco) {
         taco.setCreatedAt(new Date());
         taco.setId(idTaco);
 
