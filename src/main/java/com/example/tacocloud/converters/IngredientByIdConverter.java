@@ -1,4 +1,4 @@
-package com.example.tacocloud.web.converters;
+package com.example.tacocloud.converters;
 
 import com.example.tacocloud.Ingredient;
 import com.example.tacocloud.data.Repository;
