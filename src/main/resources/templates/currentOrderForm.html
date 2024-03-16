@@ -30,11 +30,11 @@
         </span>
     </div>
 
-    <label for="name">Name: </label>
-    <input th:field="*{name}" type="text"/>
+    <label for="nameOfRecipient">Name of the recipient: </label>
+    <input th:field="*{nameOfRecipient}" type="text"/>
     <span class="validationError"
-          th:if="${#fields.hasErrors('${tacoOrder.deliveryAddress.name}')}"
-          th:errors="${tacoOrder.deliveryAddress.name}"> Error </span>
+          th:if="${#fields.hasErrors('${tacoOrder.deliveryAddress.nameOfRecipient}')}"
+          th:errors="${tacoOrder.deliveryAddress.nameOfRecipient}"> Error </span>
     <br/>
 
     <label for="street">Street: </label>

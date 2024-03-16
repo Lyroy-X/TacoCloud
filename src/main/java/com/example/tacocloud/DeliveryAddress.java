@@ -10,7 +10,7 @@ public class DeliveryAddress {
     private int id;
 
     @NotBlank(message = "*Name обязательное поле")
-    private String name;
+    private String nameOfRecipient;
 
     @NotBlank(message = "*Street обязательное поле")
     private String street;

@@ -33,12 +33,12 @@ public class TacoOrder {
         tacos.add(taco);
     }
 
-    public String getName() {
-        return deliveryAddress.getName();
+    public String getNameOfRecipient() {
+        return deliveryAddress.getNameOfRecipient();
     }
 
-    public void setName(String name) {
-        deliveryAddress.setName(name);
+    public void setNameOfRecipient(String name) {
+        deliveryAddress.setNameOfRecipient(name);
     }
 
     public String getCity() {

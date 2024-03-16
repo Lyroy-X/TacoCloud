@@ -52,7 +52,7 @@ public class OrderRepository implements RepositoryForSave<TacoOrder> {
         deliveryAddress.setId(orderId);
         jdbcTemplate.update("INSERT INTO address(id, name, street, city, state, zip) VALUES (?, ?, ?, ?, ?, ?)",
                 deliveryAddress.getId(),
-                deliveryAddress.getName(),
+                deliveryAddress.getNameOfRecipient(),
                 deliveryAddress.getStreet(),
                 deliveryAddress.getCity(),
                 deliveryAddress.getState(),
