@@ -10,13 +10,13 @@ import java.util.List;
 
 
 @Repository
-public class OrderRepository implements RepositoryForSave<TacoOrder> {
+public class OrderRepositoryDeprecated implements RepositoryForSave<TacoOrder> {
 
     private final JdbcOperations jdbcTemplate;
     private int orderId;
     private int tacoId;
 
-    public OrderRepository(JdbcOperations jdbcTemplate) {
+    public OrderRepositoryDeprecated(JdbcOperations jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         orderId = tacoId = 1;
     }
