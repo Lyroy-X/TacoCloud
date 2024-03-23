@@ -1,24 +1,22 @@
 package com.example.tacocloud.converters;
 
-import com.example.tacocloud.Ingredient;
-import com.example.tacocloud.data.Repository;
+import com.example.tacocloud.entity.Ingredient;
+import com.example.tacocloud.data.IngredientRepository;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
-    private final Repository<Ingredient> ingredientRepository;
+    private final IngredientRepository ingredientRepository;
 
-    @Autowired
-    public IngredientByIdConverter(Repository<Ingredient> ingredientRepository) {
+    public IngredientByIdConverter(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
     @Override
     public Ingredient convert(@NonNull String id) {
-        return ingredientRepository.findById(Integer.parseInt(id)).orElseThrow();
+        return ingredientRepository.findById(id).orElseThrow();
     }
 }
