@@ -1,13 +1,12 @@
 package com.example.tacocloud.web;
 
-import com.example.tacocloud.Ingredient;
-import com.example.tacocloud.Ingredient.Type;
-import com.example.tacocloud.Taco;
-import com.example.tacocloud.TacoOrder;
-import com.example.tacocloud.data.Repository;
+import com.example.tacocloud.entity.Ingredient;
+import com.example.tacocloud.entity.Ingredient.Type;
+import com.example.tacocloud.entity.Taco;
+import com.example.tacocloud.entity.TacoOrder;
+import com.example.tacocloud.data.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -22,10 +21,9 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class TacoOrderController {
 
-    private final Repository<Ingredient> ingredientRepository;
+    private final IngredientRepository ingredientRepository;
 
-    @Autowired
-    public TacoOrderController(Repository<Ingredient> ingredientRepository) {
+    public TacoOrderController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
@@ -47,7 +45,7 @@ public class TacoOrderController {
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
 
-        List<Ingredient> ingredients = ingredientRepository.findAll();
+        List<Ingredient> ingredients = (List<Ingredient>) ingredientRepository.findAll();
         Type[] types = Ingredient.Type.values();
 
         for (Type type : types) {
