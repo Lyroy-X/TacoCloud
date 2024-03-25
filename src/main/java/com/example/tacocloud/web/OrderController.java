@@ -1,7 +1,7 @@
 package com.example.tacocloud.web;
 
-import com.example.tacocloud.TacoOrder;
-import com.example.tacocloud.data.RepositoryForSave;
+import com.example.tacocloud.entity.TacoOrder;
+import com.example.tacocloud.data.OrderRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
-    private final RepositoryForSave<TacoOrder> repository;
+    private final OrderRepository repository;
 
-    public OrderController(RepositoryForSave<TacoOrder> repository) {
+    public OrderController(OrderRepository repository) {
         this.repository = repository;
     }
 
