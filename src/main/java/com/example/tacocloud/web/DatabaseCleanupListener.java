@@ -16,7 +16,7 @@ public class DatabaseCleanupListener {
 
     @EventListener
     public void handleContextClosedEvent(ContextClosedEvent event) {
-        String sqlStatementForCleaningAllTablesExceptTableIngredient = "DELETE FROM address; DELETE FROM cc;";
+        String sqlStatementForCleaningAllTablesExceptTableIngredient = "TRUNCATE cc, address CASCADE;";
         jdbcTemplate.update(sqlStatementForCleaningAllTablesExceptTableIngredient);
     }
 }

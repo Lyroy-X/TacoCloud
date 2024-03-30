@@ -1,14 +1,23 @@
-package com.example.tacocloud;
+package com.example.tacocloud.entity;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
+@ToString
+@Entity(name = "address")
 public class DeliveryAddress {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    @Column(name = "name")
     @NotBlank(message = "*Name обязательное поле")
     private String nameOfRecipient;
 

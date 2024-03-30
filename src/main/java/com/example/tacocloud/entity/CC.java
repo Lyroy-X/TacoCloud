@@ -1,15 +1,24 @@
-package com.example.tacocloud;
+package com.example.tacocloud.entity;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
-@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Entity(name = "cc")
 public class CC {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @CreditCardNumber(message = "*Не действительный номер карты")
     private String number;
@@ -20,4 +29,3 @@ public class CC {
     @Digits(integer = 3, message = "*Не верный CVV", fraction = 0)
     private String cvv;
 }
-
