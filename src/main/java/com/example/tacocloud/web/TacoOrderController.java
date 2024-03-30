@@ -1,9 +1,7 @@
 package com.example.tacocloud.web;
 
-import com.example.tacocloud.entity.Ingredient;
+import com.example.tacocloud.entity.*;
 import com.example.tacocloud.entity.Ingredient.Type;
-import com.example.tacocloud.entity.Taco;
-import com.example.tacocloud.entity.TacoOrder;
 import com.example.tacocloud.data.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
