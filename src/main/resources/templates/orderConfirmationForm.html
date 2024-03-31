@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order confirmation</title>
+    <link href="/orderConfirmationStyles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<form class="container" th:action="@{/orders/waiting}" th:object="${tacoOrder}">
+    <h1>Итоговый заказ Taco</h1><br/>
+
+    <h3>Адрес доставки</h3>
+    <ul>
+        <li th:text="${tacoOrder.deliveryAddress.nameOfRecipient}">name</li>
+        <li th:text="${tacoOrder.deliveryAddress.street}">street</li>
+        <li th:text="${tacoOrder.deliveryAddress.city}">city</li>
+        <li th:text="${tacoOrder.deliveryAddress.state}">state</li>
+        <li th:text="${tacoOrder.deliveryAddress.zip}">zip</li>
+    </ul>
+
+    <h3>Данные карты</h3>
+    <li/>
+    <span th:text="${tacoOrder.cc.number}">number</span>
+    <li/>
+    <span th:text="${tacoOrder.cc.expiration}">expiration</span>
+    <li/>
+    <span th:text="${tacoOrder.cc.cvv}">cvv</span>
+
+    <h3>Все тако</h3>
+    <ul>
+        <li th:each="taco : ${tacoOrder.tacos}">
+            <span th:text="${taco.tacoId.name}">taco name</span>
+            <ul>
+                <li th:each="ingredient : ${taco.ingredients}">
+                    <span th:text="${ingredient.type}">ingredient type</span>
+                    <span th:text="${ingredient.name}">ingredient name</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div>
+        <input class="button" type="submit" value="Подвердить заказ"/>
+    </div>
+</form>
+</body>
+</html>
