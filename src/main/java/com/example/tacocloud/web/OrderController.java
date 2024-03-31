@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Slf4j
 @Controller
@@ -26,17 +25,18 @@ public class OrderController {
 
     @GetMapping("/current")
     public String showCurrentOrderForm() {
-        return "currentOrderForm";
+        return "currentOrder";
     }
 
-    @PostMapping
-    public String processOrder(@Valid TacoOrder completedTacoOrder, Errors errors, SessionStatus sessionStatus) {
-        if (errors.hasErrors()) return "currentOrderForm";
+    @PostMapping("/confirmation")
+    public String confirmationOrder(@Valid TacoOrder completedTacoOrder, Errors errors) {
+        if (errors.hasErrors()) return "currentOrder";
+        return "orderConfirmation";
+    }
 
-        log.info("Готовый заказ: {}", completedTacoOrder);
-        repository.save(completedTacoOrder);
-        sessionStatus.setComplete();
-
-        return "orderWaitingForm";
+    @GetMapping("/waiting")
+    public String saveTacoOrder(TacoOrder tacoOrder) {
+        repository.save(tacoOrder);
+        return "orderWaiting";
     }
 }

@@ -17,22 +17,22 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/tof")
 @SessionAttributes("tacoOrder")
-public class TacoOrderController {
+public class CreatingTacoController {
 
     private final IngredientRepository ingredientRepository;
 
-    public TacoOrderController(IngredientRepository ingredientRepository) {
+    public CreatingTacoController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
     @GetMapping
     public String showTacoOrderForm() {
-        return "tacoOrderForm";
+        return "creatingTaco";
     }
 
     @PostMapping
     public String redirectCurrentOrder(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
-        if (errors.hasErrors()) return "tacoOrderForm";
+        if (errors.hasErrors()) return "creatingTaco";
 
         tacoOrder.addTaco(taco);
         log.info("taco: {}", taco);
