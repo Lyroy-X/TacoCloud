@@ -29,14 +29,15 @@ public class OrderController {
         return "currentOrderForm";
     }
 
-    @PostMapping
-    public String processOrder(@Valid TacoOrder completedTacoOrder, Errors errors, SessionStatus sessionStatus) {
+    @PostMapping("/confirmation")
+    public String confirmationOrder(@Valid TacoOrder completedTacoOrder, Errors errors) {
         if (errors.hasErrors()) return "currentOrderForm";
+        return "orderConfirmationForm";
+    }
 
-        log.info("Готовый заказ: {}", completedTacoOrder);
-        repository.save(completedTacoOrder);
-        sessionStatus.setComplete();
-
+    @GetMapping("/waiting")
+    public String saveTacoOrder(TacoOrder tacoOrder) {
+        repository.save(tacoOrder);
         return "orderWaitingForm";
     }
 }
