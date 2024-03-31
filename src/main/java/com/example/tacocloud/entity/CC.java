@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.CreditCardNumber;
 @Setter
 @ToString
 @NoArgsConstructor
-@Entity(name = "cc")
+@Entity
 public class CC {
 
     @Id

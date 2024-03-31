@@ -12,7 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "taco")
+@Entity
 public class Taco {
 
     @Valid
