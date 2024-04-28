@@ -2,10 +2,10 @@ package com.example.tacocloud.web;
 
 import com.example.tacocloud.data.UserRepository;
 import com.example.tacocloud.entity.User;
+import com.example.tacocloud.security.UserDetailsService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

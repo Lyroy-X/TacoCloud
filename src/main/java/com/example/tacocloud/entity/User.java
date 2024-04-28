@@ -23,12 +23,11 @@ import java.util.List;
 >>>>>>> ae46239 (Создание Entity класс с именем User)
 @Data
 @NoArgsConstructor(force = true)
-@RequiredArgsConstructor
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final long id;
+    private long id;
 
     private final String username;
     private final String password;
@@ -38,6 +37,17 @@ public class User implements UserDetails {
     private final String state;
     private final String zip;
     private final String phoneNumber;
+
+    public User(String username, String password, String fullname, String street, String city, String state, String zip, String phoneNumber) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
