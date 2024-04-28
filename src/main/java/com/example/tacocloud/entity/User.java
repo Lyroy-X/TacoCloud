@@ -1,5 +1,9 @@
 package com.example.tacocloud.entity;
 
+<<<<<<< HEAD
+=======
+import jakarta.persistence.Entity;
+>>>>>>> ae46239 (Создание Entity класс с именем User)
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,6 +17,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+<<<<<<< HEAD
+=======
+@Entity
+>>>>>>> ae46239 (Создание Entity класс с именем User)
 @Data
 @NoArgsConstructor(force = true)
 @RequiredArgsConstructor
